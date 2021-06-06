@@ -1,0 +1,38 @@
+
+<html>
+    <head><meta charset="utf-8" /></head>
+    <body>
+        <script type="text/javascript" src="violin_chart.js"></script>
+        <script type="text/javascript" src="figure.js"></script>
+        
+        <div id="f1ea5c8a-e62e-4528-a303-192aa44f6d9e" style="width: 100%; height: 100%;" class="plotly-graph-div"></div>
+        <script type="text/javascript">
+            (function(){
+                var gd = document.getElementById('f1ea5c8a-e62e-4528-a303-192aa44f6d9e')
+                var resizeDebounce = null;
+
+                function resizePlot() {
+                    var bb = gd.getBoundingClientRect();
+                    Plotly.relayout(gd, {
+                        width: bb.width,
+                        height: bb.height
+                    });
+                }
+
+                window.addEventListener('resize', function() {
+                    if (resizeDebounce) {
+                        window.clearTimeout(resizeDebounce);
+                    }
+                    resizeDebounce = window.setTimeout(resizePlot, 100);
+                });
+                                
+                Plotly.plot(gd,  {
+                    data: figure.data,
+                    layout: figure.layout,
+                    frames: figure.frames,
+                    config: {"showLink": false, "linkText": "Export to plotly.com", "mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A"}
+                });
+           }());
+        </script>
+    </body>
+</html>

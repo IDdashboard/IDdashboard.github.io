@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel='shortcut icon' type='image/x-icon' href='img/logo.png'>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script type="text/javascript" src="plot.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">    
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="http://d3js.org/d3.v5.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>      
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">    
+    <script type="text/javascript"> $(document).ready(function () { $("#violin").load("violin.html"); }); </script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="matrix.js"></script>
+
+    <title>ID투자증권</title>
+</head>
+
+<body>
+    <header>
+        <div class="divleft">
+            반도체, 상승 가즈아!
+        </div>
+        <div class="divright">
+            <span>
+                <input type="checkbox" onclick="togcheck()">
+            </span>
+            <span>
+                <img id="img1" src="img/boy.png" />
+            </span>
+        </div>
+
+    </header>
+    <main>
+        <div class="top">
+            <b id="title">ID-Dashboard</b>
+        </div>
+        <div class="inner">
+            <nav id="followquick">
+                <ul class="sidebar" align="center">
+                    <li class="tab">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </li>
+                    <li class="tab"><a href="#content">
+                            <i class="fas fa-chart-line fa-lg" id="li"></i><br>주가등락예측</a>
+                    </li>
+                    <li class="tab"><a href="#violin-line">
+                            <i class="fas fa-percentage fa-lg" id="li"></i><br>등락분류분포</r></a>
+                    </li>
+                    <li class="tab"><a href="#matrix-line">
+                            <i class="fas fa-search-dollar fa-lg" id="li"></i><br>주가관련지수</a>
+                    </li>
+                </ul>
+
+            </nav>
+            <!-- 기준연월을 바꿀 수 있는 버튼 인터랙션 주기 / 누적 상승 일수 차트는 고민해보기. -->
+            <div id="content" align="left">
+                <div class="stab">
+                    <span class="stabilityL">
+                        <div class="chart_title">
+                            <div><i class="fas fa-caret-right"></i><b> SK하이닉스 전체 등락 비율</b></div> 
+                            
+                        </div>
+                        <div id="indicator_rate">
+                            <div class="redhigh"><span><i class="fas fa-long-arrow-alt-up"> 49.7%</i></span></div>
+                            <div class="bluehigh"><span><i class="fas fa-long-arrow-alt-down"> 50.3%</i></span></div>
+                        </div>                        
+                        <div class="chart_title_sub">
+                            <span><i class="fas fa-caret-right"></i><b> SK하이닉스 최근 누적 상승 일수</b></span>
+                        </div>
+                        <canvas id="h_chart"></canvas>
+                    </span>
+                    <span class="stability">
+                        <div class="chart_title">
+                            <div>
+                            <i class="fas fa-caret-right"></i><b> 삼성전자 전체 등락 비율</b></div>
+                        </div>
+                        <div id="indicator_rate">
+                            <div class="sredhigh"><span><i class="fas fa-long-arrow-alt-up"> 50.1%</i></span></div>
+                            <div class="sbluehigh"><span><i class="fas fa-long-arrow-alt-down"> 49.9%</i></span></span></div>
+                        </div>                        
+                        <div class="chart_title_sub">
+                            <span><i class="fas fa-caret-right"></i><b> 삼성전자 최근 누적 상승 일수</b></span>
+                        </div>
+                        <canvas id="s_chart"></canvas>
+                    </span>
+                </div>
+                <div id="btn" align="center">
+                    <button id="btn_month" onclick="indicator_btn(this)">최근 1개월</button>
+                    <button id="btn_6month" onclick="indicator_btn(this)">최근 6개월</button>
+                    <button id="btn_year" onclick="indicator_btn(this)">최근 1년</button>
+                    <button id="btn_ori" onclick="indicator_btn(this)">초기값</button>
+                </div>
+                <div id="violin-line"></div>
+                <div id="sec">
+                    <div id="index" align="center">                    
+                        <span>
+                            <i class="fas fa-caret-right"></i>
+                            <b>SK하이닉스와 삼성전자 전일대비 등락 분포</b>
+                            <div><pre>      기준연월(2010.07~2021.05)</pre></div>
+                        </span>
+                        <div id="violin">                                                                
+                            <div id="violin_chart"></div>                     
+                        </div>
+                    </div>
+                </div>
+                <div id="matrix-line"></div>
+                <script>adjacency();</script>
+                <div id="matrix_cover">
+                    <div id="matrix" align="center">
+                        <span>
+                            <i class="fas fa-caret-right"></i>
+                            <b>연별 주가관련지수 상관성 분석</b>
+                        </span>
+                        <svg id="ma_year" viewBox="-60 -40 680 680" preserveAspectRatio="xMixYMin meet"></svg>
+                    </div>
+                    
+                    <div id="matrix" align="center">
+                        <span>
+                            <i class="fas fa-caret-right"></i>
+                            <b>일별 주가관련지수 상관성 분석</b>
+                        </span>
+                        <svg id="ma_day" viewBox="-60 -40 680 680" preserveAspectRatio="xMixYMin meet"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

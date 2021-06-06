@@ -1,0 +1,384 @@
+html{
+    scroll-behavior: smooth;
+}
+
+
+b{
+    font-family: 'NEXON Lv2 Gothic';
+    font-size: 15pt;
+}
+
+@font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    font-weight: normal; 
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media (max-width: 1000px) {
+    #followquick{
+        display: none;
+    }
+}
+
+/* 폰트 설정 */
+.legendtitletext > .line, .legendtext, .main-svg, .user-select-none svg-container, .h_chart, .s_chart, .js-plotly-plot .plotly, .js-plotly-plot .plotly div{
+    font-family: 'NEXON Lv2 Gothic' !important;
+}
+
+a{
+    text-decoration: none !important;
+    color:white;
+}
+a:hover{
+    color:skyblue;
+}
+#il:hover{
+    color:skyblue;
+}
+
+
+li{
+    list-style: none;
+}
+
+ul{
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+}
+body {
+    background-color: #edeff5;
+    font-family: 'NEXON Lv2 Gothic';
+    padding: 0pr;
+    margin: 0px;
+}
+
+header{
+    position: static;
+    width: 100%;
+    height: 100px;
+    margin-right: 3%;
+}
+
+.divleft{
+    float: left;
+    font-size: 4vw;
+    color: #2A323A;
+    font-family: 'Cafe24Ohsquare';
+    margin-left: 5%;
+    margin-top: 1%;
+}
+
+.divright{
+    align-items: right;
+    text-align: right;
+}
+
+#img1{
+    height:100px;
+    margin-right: 3%;
+    transition: all 1s;
+}
+input {
+    -webkit-appearance: none;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #F2CB05;
+    background-size: cover;
+    border-radius: 50px;
+    outline: none;
+    box-shadow: 1px 1px 1px 1px #e6e6e6;
+}
+  
+input:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    transition: all 0.7s;
+}
+  
+input:checked {
+    background-color: #0D0D0D;
+}
+input:checked:before {    
+    transform: translate(100%);
+    transition: all 0.7s;
+}
+  
+
+/* bpd */
+
+main{
+    float:left;
+    width:94%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.top{
+    background: #0093DD; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0093DD, #5AC3E1); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0093DD, #5AC3E1);
+    border-radius: 5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+#title{
+    margin-left: 130px;
+    font-size: 24pt;
+    color: white;
+}
+
+
+.inner{
+    display: flex;
+    margin-top: 5px;
+    height: 2000px;
+    width: 100%;    
+}
+
+#followquick{
+    position: fixed;
+    float: left;
+    z-index: 100;
+    top:160px;
+    width:100px;
+    height: 70%;
+    background: #0093DD;
+    background: -webkit-linear-gradient(to bottom, #0093DD, #5AC3E1);
+    background: linear-gradient(to bottom, #0093DD, #5AC3E1);
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px 1px #d6d6d6;
+    
+}
+
+main > .inner > #content{
+    margin-left: 8%;
+    width: 90%;
+}
+
+.btn{
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+}
+.tab{
+    padding-top: 70%;
+    color: white;
+}
+
+button{
+    width: 100px;
+    height: 35px;
+    font-family:'NEXON Lv2 Gothic';
+    color:#000;
+	background: #fff;
+	font-size: 16px;
+	border:none;
+	border-radius: 15px;	
+	transition:0.3s;
+    margin-top: 10px;    
+}
+button:focus {
+	outline:0;
+}
+button:hover{
+    background: linear-gradient(to bottom, #0093DD, #5AC3E1);
+	cursor: pointer;
+	box-shadow: 0 1px 1px rgba(0,79,255,0.6);
+    transition: all 0.5s;
+}
+#btn_ori{
+    background: linear-gradient(to bottom, #0093DD, #5AC3E1);
+}
+
+.stab{
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.stability, .stabilityL{
+    /* margin-top: 2%;
+    margin-left: 8%; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    background: #ffffff;
+    border-radius: 15px;
+    float: left; 
+    padding: 30px;
+    margin-top: 10px;
+}
+.stabilityL{
+    margin-right: 10px;
+}
+
+.stability-title-h{    
+    margin: 5px;
+    width: 80%;
+    height: inherit;
+    float: left;
+    margin-bottom: 20px;
+}
+#indicator_rate{
+    margin-top: 10px;
+}
+#indicator_rate > div > span{
+    display:flex;
+    flex-direction: column;
+    text-align: center;    
+    color: white;
+    margin-top: 30px;
+    font-size: 14pt;
+}
+#indicator_rate > div:hover{
+    transform:scale(0.95);
+    transition: all 0.3s;
+}
+
+.stability-line > div .redhigh:hover{
+    background: red;
+    transition: all 0.3s;
+}
+.stability-line > div .redlow:hover{
+    background: orange;
+    transition: all 0.3s;
+}
+.stability-line > div .hold:hover{
+    background:#AAAAAA;
+    transition: all 0.3s;
+}
+.stability-line > div .bluelow:hover{
+    background: skyblue;
+    transition: all 0.3s;
+}
+.stability-line > div .bluehigh:hover{
+    background: blue;
+    transition: all 0.3s;
+}
+
+    
+.redhigh, .sredhigh{
+    /* display: flex;
+    flex-direction: row; */
+    /* flex: 1 1 0; */
+    background: #ED213A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left bottom, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left bottom, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: inline-block;
+    width: 49%;
+    height: 80px;
+    border-radius: 15px;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s;    
+}
+
+.bluehigh, .sbluehigh{
+    background: #0575E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left bottom, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left bottom, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: inline-block;
+    opacity: 0.8;
+    width: 49%;
+    height: 80px;
+    border-radius: 10pt;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s;
+}
+
+.chart_title, .chart_title_sub{    
+    margin-left: 10px;
+    text-align: center;
+}
+.chart_title_sub{    
+    margin-top: 10px;
+}
+
+.chart_title > div > b, .chart_title > span > b{
+    font-size: 15pt;
+}
+.chart_title > div{
+    font-size: 10pt;
+}
+
+#sec{    
+    display: flex;
+    justify-content: center;
+    background: #FFFFFF;        
+    padding : 30px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+#violin{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 50px;
+}
+
+#index{
+    margin-top: 50px;
+    display: inline-block;
+    flex-direction: column;    
+    background: #FFFFFF;
+    width: fit-content;
+    padding : 30px;
+    border-radius: 15px;
+}
+
+#index > span > div > pre{
+    font-family: 'NEXON Lv2 Gothic';
+}
+
+#s_chart, #h_chart{
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    /* width: inherit; */
+    /* height: 500px; */
+}
+#matrix_cover{
+    display: flex;
+    flex-direction: row;    
+}
+#matrix, #index{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column ;
+    background: #FFFFFF;
+    width: fit-content;
+    padding : 10px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+#matrix >span{
+    padding-top: 40px;
+}
+#matrix >svg{    
+    width: 600px;
+    height: 600px;
+}
+
+.grid_year, .grid_day {
+    stroke: #666666;
+	stroke-width: 1px; 
+    transition: all 0.4s;
+}
