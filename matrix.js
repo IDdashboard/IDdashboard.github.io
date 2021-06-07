@@ -54,8 +54,7 @@ function adjacency() {
                     return "blue";
                 }
             })
-            .style("fill-opacity", function(d) {
-                console.log(matrix);               
+            .style("fill-opacity", function(d) {                           
                 if (d.weight > 0) {
                     return d.weight*0.01;
                 } else if (d.weight < 0) {
