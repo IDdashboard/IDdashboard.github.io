@@ -1,186 +1,299 @@
-d3.csv("dataset/data.csv").then(makeChart);
+d3.csv("dataset/data.csv").then(read);
+Sy=[], Hy=[], SS=[], HH=[], Spre=[], Hpre=[], date=[];
+// Sy : S금리대비, Hy : H금리대비
+// SS : S적중일, HH : H적중일
+// Spre : S예측, Hpre : H예측
+// label = 날짜
 
-function makeChart(sdata) {
-    var Sdata = [];
-    var Hdata = [];                //데이터를 저장할 배열을 준비
-    var deposit = [];
-    var label = [];
-    var Spre = [];
-    var Sori = [];
-    var Spori = [];
-    var Hori = [];
-    var Hpori = [];
-    var Hpre = [];
-    var SS = [];
-    var HH = [];
-    var k =0;
-    var d =0;
-    var s = 0;
-    var sp = 0;
-    var hp = 0;
-    var ss = 0;
-    var hh = 0;
-    var p =0, p2=0;
-    var index = 30; //10일 보기
-    for (let i = 0; i < index; i++) {              
-        k = k + Number(sdata[sdata.length-1-index+i].Sy)
-        s = s + Number(sdata[sdata.length-1-index+i].Hy)
-        d = d + Number(sdata[sdata.length-1-index+i].deposit)
-        hp = hp + Number(sdata[sdata.length-1-index+i].Hpre)
-        sp = sp + Number(sdata[sdata.length-1-index+i].Spre)
-        ss = Number(sdata[sdata.length-1-index+i].SS)
-        hh = Number(sdata[sdata.length-1-index+i].HH)
-        Sdata.push(k);    //item1의 레이블 데이터만 추출
-        Hdata.push(s);
-        SS.push(ss);
-        HH.push(hh);
-        Sori.push(sdata[sdata.length-1-index+i].Sy);
-        Spori.push(sdata[sdata.length-1-index+i].Spre);
-        Hori.push(sdata[sdata.length-1-index+i].Hy);
-        Hpori.push(sdata[sdata.length-1-index+i].Hpre);
-        label.push(sdata[sdata.length-1-index+i].date);
-        p = p+hh;
-        p2 = p2+ss;
-        Spre.push(sp);
-        Hpre.push(hp);
-        deposit.push(d);
+function read(data){
+    function read_csv() {
+        for (let j =0; j<data.length; j++){
+        Sy.push(Number(data[j].Sy));
+        Hy.push(Number(data[j].Hy));
+        SS.push(Number(data[j].SS));
+        HH.push(Number(data[j].HH));                
+        date.push(String(data[j].date));
+        Spre.push(Number(data[j].Spre));
+        Hpre.push(Number(data[j].Hpre));
+        }
     }
-    var h_correct = p/index*100;
-    var s_correct = p2/index*100;
-    console.log(h_correct, s_correct);
-    // var ctx = document.getElementById('art').getContext('2d');
-    var ctx = document.getElementById('h_chart').getContext("2d");
-    var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-    gradientStroke.addColorStop(0, "#F25C05");
-    gradientStroke.addColorStop(1, "#F2B705"); 
-    var myChart = new Chart('h_chart', {
-        data: {
-            datasets: [{
-                    type: 'line',
-                    label: '실제',
-                    data: Hdata,
-                    yAxisID: "y",
-                    borderColor: gradientStroke,
-                    backgroundColor: gradientStroke,
-                    fill: false,                
-                    steppedLine: true
-                },{
-                    type: 'line',
-                    label: '예측',
-                    data: Hpre,
-                    yAxisID: "y",
-                    borderColor: 'rgb(242, 183, 5)',
-                    backgroundColor: 'rgba(255,255,255)',
-                    borderDash: [8,4],
-                    steppedLine: true
-                },
-                {   
-                    type: "bar",
-                    label: '적중일',
-                    data: HH,
-                    yAxisID: "z",
-                    backgroundColor: 'rgba(102, 102, 102, 0.5)'
-                }],
-            labels: label
-        },
-        options: {
-            responsive: false,
-            legend: {
-                display: true,
-                position: 'bottom'
-            },
-            scales: { 
-                y: {
-                    id: 'y',
-                    display: true,
-                    type: 'linear',
-                    position: 'left',
-                    max: Math.max.apply(Spre, Hpre)+3
-                }, 
-                z: {
-                    id: 'z',
-                    display: false,
-                    type: 'linear',
-                    position: 'right',
-                    max: 8,
-                    min: 0,
-                    reverse: true            
-                },
-                x: {
-                    ticks: {
-                        autoSkip: true,
-                        maxRotation: 0,
-                        minRotation: 0
-                    }
-                }
-            }
-        }
-    });
-    var sctx = document.getElementById('s_chart').getContext("2d");
-    var gradientStroke = sctx.createLinearGradient(500, 0, 100, 0);
-    gradientStroke.addColorStop(0, "#0c4da2");
-    gradientStroke.addColorStop(1, "#C216F2");
+    read_csv();    
 
-    var myChart = new Chart('s_chart',{
-        data: {
-            datasets: [{
-                    type: 'line',
-                    label: '실제',
-                    data: Sdata,
-                    yAxisID: "y",
-                    borderColor: gradientStroke,
-                    backgroundColor: gradientStroke,
-                    steppedLine: true
-                },{
-                    type: 'line',
-                    label: '예측',
-                    data: Spre,
-                    yAxisID: "y",
-                    borderColor: 'rgba(194, 22, 242, 0.6)',
-                    backgroundColor: 'rgba(255,255,255)',
-                    borderDash: [8,4],
-                    steppedLine: true
-                },
-                {   
-                    type: "bar",
-                    label: '적중일',
-                    data: SS,
-                    yAxisID: "z",
-                    backgroundColor: 'rgba(102, 102, 102, 0.5)'
-                }],
-            labels: label
-        },
-        options: {
-            responsive: false,
-            legend: {
-                display: true,
-                position: 'bottom'
+    function readChart(index=30) {
+        readSy=[], readHy=[], readSS=[], readHH=[], readSpre=[], readHpre=[], readdate=[];
+        var k=0, d=0, s=0, sp=0, hp=0, ss=0, hh=0, p=0, p2=0;
+        // console.log(SS.slice(-index-1,-1));
+        for (let i = 0; i < index; i++) {
+            k = k + Number(Sy[Sy.length-index+i]);
+            s = s + Number(Hy[Hy.length-index+i]);        
+            hp = hp + Number(Hpre[Hpre.length-index+i]);
+            sp = sp + Number(Spre[Spre.length-index+i]);
+            ss = Number(SS[SS.length-index+i]);
+            hh = Number(HH[HH.length-index+i]);
+            readSy.push(k);
+            readHy.push(s);
+            readSS.push(ss);
+            readHH.push(hh);
+            readSpre.push(sp);
+            readHpre.push(hp);
+        }
+        readdate = date.slice(-index-1,-1);
+        return readHy, readHpre, readHH, readdate;
+    }
+    
+    function makeChart() {
+        readChart();
+        var ctx = document.getElementById('h_chart').getContext("2d");
+        var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        gradientStroke.addColorStop(0, "#F25C05");
+        gradientStroke.addColorStop(1, "#F2B705"); 
+
+        var config = {
+            data: {
+                datasets: [{
+                        type: 'line',
+                        label: '실제',
+                        data: readHy,
+                        yAxisID: "y",
+                        borderColor: gradientStroke,
+                        backgroundColor: gradientStroke,
+                        fill: false,                
+                        steppedLine: true
+                    },{
+                        type: 'line',
+                        label: '예측',
+                        data: readHpre,
+                        yAxisID: "y",
+                        borderColor: 'rgb(242, 183, 5)',
+                        backgroundColor: 'rgba(255,255,255)',
+                        borderDash: [8,4],
+                        steppedLine: true
+                    },
+                    {   
+                        type: "bar",
+                        label: '적중일',
+                        data: readHH,
+                        yAxisID: "z",
+                        backgroundColor: 'rgba(102, 102, 102, 0.5)'
+                    }],
+                labels: readdate
             },
-            scales: {
-                y: {
-                    id: 'y',
+            options: {
+                responsive: true,
+                legend: {
                     display: true,
-                    type: 'linear',
-                    position: 'left',
-                    max: Math.max.apply(Spre, Hpre)+3
-                }, 
-                z: {
-                    id: 'z',
-                    display: false,
-                    type: 'linear',
-                    position: 'right',
-                    max: 8,
-                    min: 0,
-                    reverse: true                    
-                  },
-                x: {
-                    ticks: {
-                        autoSkip: true,
-                        maxRotation: 0,
-                        minRotation: 0
+                    position: 'bottom'
+                },
+                scales: { 
+                    y: {
+                        id: 'y',
+                        display: true,
+                        type: 'linear',
+                        position: 'left',
+                        max: 30                    
+                    }, 
+                    z: {
+                        id: 'z',
+                        display: false,
+                        type: 'linear',
+                        position: 'right',
+                        max: 8,
+                        min: 0,
+                        reverse: true            
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: true,
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
                     }
                 }
             }
+        };
+        var myChart = new Chart(ctx, config);
+
+        var sctx = document.getElementById('s_chart').getContext("2d");
+        var gradientStroke = sctx.createLinearGradient(500, 0, 100, 0);
+        gradientStroke.addColorStop(0, "#0c4da2");
+        gradientStroke.addColorStop(1, "#C216F2");
+
+        var sconfig = {
+            data: {
+                datasets: [{
+                        type: 'line',
+                        label: '실제',
+                        data: readSy,
+                        yAxisID: "y",
+                        borderColor: gradientStroke,
+                        backgroundColor: gradientStroke,
+                        steppedLine: true
+                    },{
+                        type: 'line',
+                        label: '예측',
+                        data: readSpre,
+                        yAxisID: "y",
+                        borderColor: 'rgba(194, 22, 242, 0.6)',
+                        backgroundColor: 'rgba(255,255,255)',
+                        borderDash: [8,4],
+                        steppedLine: true
+                    },
+                    {   
+                        type: "bar",
+                        label: '적중일',
+                        data: readSS,
+                        yAxisID: "z",
+                        backgroundColor: 'rgba(102, 102, 102, 0.5)'
+                    }],
+                labels: readdate
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                },
+                scales: {
+                    y: {
+                        id: 'y',
+                        display: true,
+                        type: 'linear',
+                        position: 'left',
+                        max: 30                   
+                    }, 
+                    z: {
+                        id: 'z',
+                        display: false,
+                        type: 'linear',
+                        position: 'right',
+                        max: 8,
+                        min: 0,
+                        reverse: true                    
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: true,
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
+                    }
+                }
+            }
+        };
+        var myChart2 = new Chart(sctx, sconfig);
+        var year_up=50.4, year_down =49.6;
+        var month6_up=52.4, month6_down=47.6;
+        var month_up=38.0, month_down=62.0;
+        
+        var syear_up=50.4, syear_down =49.6;
+        var smonth6_up=48.3, smonth6_down=51.7;
+        var smonth_up=47.6, smonth_down=52.4;
+        
+        document.getElementById('btn_month').onclick = function(){
+            myChart.destroy();
+            myChart2.destroy();
+            readHy, readHpre, readHH, readdate, readSy, readSpre, readSS = readChart(30);
+            var data = myChart.config.data;        
+            data.datasets[0].data = readHy;
+            data.datasets[1].data = readHpre;
+            data.datasets[2].data = readHH;
+            data.labels = readdate;
+            myChart.config.options.scales.y.max = 30;
+            myChart = new Chart(ctx, config);
+            myChart.update();
+            var data2 = myChart2.config.data;
+            data2.datasets[0].data = readSy;
+            data2.datasets[1].data = readHpre;
+            data2.datasets[2].data = readHH;
+            data2.labels = readdate;
+            myChart2.config.options.scales.y.max = 30;
+            myChart2 = new Chart(sctx, sconfig);
+            myChart2.update();
+
+            jQuery('.redhigh > span > i').text(" " + month_up + "%");
+            jQuery('.sredhigh > span > i').text(" " + smonth_up + "%");
+            jQuery('.bluehigh > span > i').text(" " + month_down + "%");
+            jQuery('.sbluehigh > span > i').text(" " +smonth_down + "%");
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:0.4},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:1},200);
+            jQuery('#btn_month').css('background', 'linear-gradient(to bottom, #0093DD, #5AC3E1');
+            jQuery('#btn_year, #btn_6month, #btn_ori').css('background', 'white');
         }
-    });    
+
+        
+        document.getElementById('btn_6month').onclick = function(){
+            myChart.destroy();
+            myChart2.destroy();
+            readHy, readHpre, readHH, readdate, readSy, readSpre, readSS = readChart(120);
+            var data = myChart.config.data;        
+            data.datasets[0].data = readHy;
+            data.datasets[1].data = readHpre;
+            data.datasets[2].data = readHH;
+            data.labels = readdate;
+            myChart.config.options.scales.y.max = 120;            
+            myChart = new Chart(ctx, config);        
+            myChart.update();
+            var data2 = myChart2.config.data;
+            data2.datasets[0].data = readSy;
+            data2.datasets[1].data = readHpre;
+            data2.datasets[2].data = readHH;
+            data2.labels = readdate;
+            myChart2.config.options.scales.y.max = 120;
+            myChart2 = new Chart(sctx, sconfig);
+            myChart2.update();
+
+
+            jQuery('.redhigh > span > i').text(" " + month6_up + "%");
+            jQuery('.sredhigh > span > i').text(" " + smonth6_up + "%");
+            jQuery('.bluehigh > span > i').text(" " + month6_down + "%");
+            jQuery('.sbluehigh > span > i').text(" " +smonth6_down + "%");
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:0.4},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:1},200);
+            jQuery('#btn_6month').css('background', 'linear-gradient(to bottom, #0093DD, #5AC3E1');
+            jQuery('#btn_month, #btn_year, #btn_ori').css('background', 'white');
+        }
+
+
+        document.getElementById('btn_year').onclick = function(){
+            myChart.destroy();
+            myChart2.destroy();
+            readHy, readHpre, readHH, readdate, readSy, readSpre, readSS = readChart(250);
+            var data = myChart.config.data;        
+            data.datasets[0].data = readHy;
+            data.datasets[1].data = readHpre;
+            data.datasets[2].data = readHH;
+            data.labels = readdate;
+            myChart.config.options.scales.y.max = 250;
+            myChart = new Chart(ctx, config);
+            myChart.update();
+            var data2 = myChart2.config.data;
+            data2.datasets[0].data = readSy;
+            data2.datasets[1].data = readHpre;
+            data2.datasets[2].data = readHH;
+            data2.labels = readdate;
+            myChart2.config.options.scales.y.max = 250;
+            myChart2 = new Chart(sctx, sconfig);
+            myChart2.update();
+
+            jQuery('.redhigh > span > i').text(" " + year_up + "%");
+            jQuery('.sredhigh > span > i').text(" " + syear_up + "%");
+            jQuery('.bluehigh > span > i').text(" " + year_down + "%");
+            jQuery('.sbluehigh > span > i').text(" " +syear_down + "%");            
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:0.4},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:1},200);            
+            jQuery('#btn_year').css('background', 'linear-gradient(to bottom, #0093DD, #5AC3E1');
+            jQuery('#btn_month, #btn_6month, #btn_ori').css('background', 'white');
+        }
+
+        
+    }
+    makeChart();
 }
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}
+// 위 배열들은 모두 csv파일에서 필요한 부분 전체를 읽어온 뒤 각 기간 인덱스 버튼에 맞게 설정

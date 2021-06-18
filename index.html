@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
@@ -86,10 +86,11 @@
                             <div class="bluehigh"><span><i class="fas fa-long-arrow-alt-down"> 50.3%</i></span></div>
                         </div>                        
                         <div class="chart_title_sub">
-                            <span><i class="fas fa-caret-right"></i><b> SK하이닉스 최근 누적 상승 일수 (적중률 <span class="b-highlight">73.3%</span>, 30일)</b>
+                            <span><i class="fas fa-caret-right"></i><b> SK하이닉스 최근 누적 상승 일수 (적중률 <span class="b-highlight">80%</span>)</b>
                             </span>
                         </div>
                         <canvas id="h_chart"></canvas>
+                        
                     </span>
                     <span class="stability">
                         <div class="chart_title">
@@ -101,17 +102,16 @@
                             <div class="sbluehigh"><span><i class="fas fa-long-arrow-alt-down"> 49.9%</i></span></span></div>
                         </div>                        
                         <div class="chart_title_sub">
-                            <span><i class="fas fa-caret-right"></i><b> 삼성전자 최근 누적 상승 일수 (적중률 <span class="b-highlight">80%</span>, 30일)</b>
+                            <span><i class="fas fa-caret-right"></i><b> 삼성전자 최근 누적 상승 일수 (적중률 <span class="b-highlight">80%</span>)</b>
                             </span>
                         </div>
                         <canvas id="s_chart"></canvas>
                     </span>
                 </div>
                 <div id="btn" align="center">
-                    <button id="btn_month" onclick="indicator_btn(this)">최근 1개월</button>
-                    <button id="btn_6month" onclick="indicator_btn(this)">최근 6개월</button>
-                    <button id="btn_year" onclick="indicator_btn(this)">최근 1년</button>
-                    <button id="btn_ori" onclick="indicator_btn(this)">초기값</button>
+                    <button id="btn_month" >최근 1개월</button>
+                    <button id="btn_6month" >최근 6개월</button>
+                    <button id="btn_year" >최대(250)</button>
                 </div>
                 <div id="violin-line"></div>
                 <div id="sec">
@@ -134,7 +134,7 @@
                             <i class="fas fa-caret-right"></i>
                             <b>주가관련지수 내부요인 상관성 분석</b>
                         </span>
-                        <svg id="ma_year" viewBox="-60 -40 680 680" preserveAspectRatio="xMixYMin meet"></svg>
+                        <svg id="ma_year" viewBox="-60 -40 680 680"></svg>
                     </div>
                     
                     <div id="matrix" align="center">
@@ -142,11 +142,14 @@
                             <i class="fas fa-caret-right"></i>
                             <b>주가관련지수 외부요인 상관성 분석</b>
                         </span>
-                        <svg id="ma_day" viewBox="-60 -40 680 680" preserveAspectRatio="xMixYMin meet"></svg>
+                        <svg id="ma_day" viewBox="-60 -40 680 680"></svg>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 </body>
+<footer>
+    read();
+</footer>
 </html>

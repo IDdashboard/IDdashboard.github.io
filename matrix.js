@@ -31,8 +31,8 @@ function adjacency() {
             wei.push(grid.weight)
             matrix.push(grid)
             })
-        })
-        console.log(wei);
+        });       
+        
         var svg = d3.select("#m_year")
 
         d3.select("#ma_year").append("g")
