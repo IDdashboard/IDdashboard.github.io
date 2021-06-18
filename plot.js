@@ -226,8 +226,8 @@ function read(data){
             jQuery('.hb-highlight').text(" " +(hcorrect/index*100).toFixed(2) + "%");
             jQuery('.sb-highlight').text(" " +(scorrect/index*100).toFixed(2) + "%");
             jQuery('.h-explain, s-explain').text("30일, 개장일 기준");         
-            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:0.4},200);
-            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:1},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i, .chart_title_sub").animate({opacity:0.4},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i, .chart_title_sub").animate({opacity:1},200);
             jQuery('#btn_month').css('background', 'linear-gradient(to bottom, #0093DD, #5AC3E1');
             jQuery('#btn_year, #btn_6month, #btn_ori').css('background', 'white');
 
@@ -264,8 +264,8 @@ function read(data){
             jQuery('.hb-highlight').text(" " +(hcorrect/index*100).toFixed(2) + "%");
             jQuery('.sb-highlight').text(" " +(scorrect/index*100).toFixed(2) + "%");
             jQuery('.h-explain, s-explain').text("120일, 개장일 기준");
-            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:0.4},200);
-            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:1},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i, .chart_title_sub").animate({opacity:0.4},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i, .chart_title_sub").animate({opacity:1},200);
             jQuery('#btn_6month').css('background', 'linear-gradient(to bottom, #0093DD, #5AC3E1');
             jQuery('#btn_month, #btn_year, #btn_ori').css('background', 'white');
         }
@@ -301,8 +301,8 @@ function read(data){
             jQuery('.sb-highlight').text(" " +(scorrect/index*100).toFixed(2) + "%");
             jQuery('.h-explain, s-explain').text("250일, 개장일 기준");         
             // jQuery('.s-explain').text("1개월, 개장일 기준");
-            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:0.4},200);
-            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i").animate({opacity:1},200);            
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i, .chart_title_sub").animate({opacity:0.4},200);
+            jQuery(".redhigh > span > i, .sredhigh > span > i, .bluehigh > span > i, .sbluehigh > span > i, .chart_title_sub").animate({opacity:1},200);            
             jQuery('#btn_year').css('background', 'linear-gradient(to bottom, #0093DD, #5AC3E1');
             jQuery('#btn_month, #btn_6month, #btn_ori').css('background', 'white');
         }
