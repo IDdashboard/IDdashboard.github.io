@@ -38,7 +38,7 @@ function read(data){
             readHpre.push(hp);
         }
         readdate = date.slice(-index-1,-1);
-        return readHy, readHpre, readHH, readdate;
+        return readHy, readHpre, readHH, readdate, readSy, readSpre, readSS;
     }
     
     function makeChart() {
@@ -203,8 +203,8 @@ function read(data){
             myChart.update();
             var data2 = myChart2.config.data;
             data2.datasets[0].data = readSy;
-            data2.datasets[1].data = readHpre;
-            data2.datasets[2].data = readHH;
+            data2.datasets[1].data = readSpre;
+            data2.datasets[2].data = readSS;
             data2.labels = readdate;
             myChart2.config.options.scales.y.max = 30;
             myChart2 = new Chart(sctx, sconfig);
@@ -235,8 +235,8 @@ function read(data){
             myChart.update();
             var data2 = myChart2.config.data;
             data2.datasets[0].data = readSy;
-            data2.datasets[1].data = readHpre;
-            data2.datasets[2].data = readHH;
+            data2.datasets[1].data = readSpre;
+            data2.datasets[2].data = readSS;
             data2.labels = readdate;
             myChart2.config.options.scales.y.max = 120;
             myChart2 = new Chart(sctx, sconfig);
@@ -268,8 +268,8 @@ function read(data){
             myChart.update();
             var data2 = myChart2.config.data;
             data2.datasets[0].data = readSy;
-            data2.datasets[1].data = readHpre;
-            data2.datasets[2].data = readHH;
+            data2.datasets[1].data = readSpre;
+            data2.datasets[2].data = readSS;
             data2.labels = readdate;
             myChart2.config.options.scales.y.max = 250;
             myChart2 = new Chart(sctx, sconfig);
