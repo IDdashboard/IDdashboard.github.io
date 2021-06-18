@@ -317,12 +317,16 @@ button:hover{
 .chart_title > div{
     font-size: 10pt;
 }
-.b-highlight{
+.sb-highlight, .hb-highlight{
     text-shadow: 
      3px 0px 3px #5AC3E1,
     -3px 0px 3px #5AC3E1,
      6px 0px 6px #5AC3E1,
     -6px 0px 6px #5AC3E1;
+}
+.h-explain, .s-explain{
+    font-family: 'NEXON Lv2 Gothic';
+    margin-top: 10px;
 }
 #sec{    
     display: flex;
