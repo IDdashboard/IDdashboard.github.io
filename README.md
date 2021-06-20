@@ -1,5 +1,5 @@
 # ID-Dashboard
-### 💻접속링크 : IDdashboard.github.io
+### 💻접속링크 : idinvestment.github.io
 ### 📋광운대학교 2021년도 1학기 [융합]데이터마이닝/정보디자인 대시보드 
 ### 😊참여팀원 : [대시보드] 최수지,김종민 
 
